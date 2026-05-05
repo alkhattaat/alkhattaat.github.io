@@ -11,153 +11,122 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 ```
-:root {
-  --slate:    #b0bcd8;
-  --slate-mid:#8fa0c2;
-  --card-left: #4a5e8a;
-  --card-right:#b8c6de;
-  --deep:     #3a4a6b;
-  --ink:      #1e2535;
-  --white:    #f7f8fb;
-  --btn:      #7a8fb5;
-  --btn-hover:#5c74a0;
-  --shadow:   rgba(30,37,53,.22);
-}
-
 html { scroll-behavior: smooth; }
 
 body {
   min-height: 100vh;
-  background: #e8ebf2;
+  background-color: #b0bfdb;
   font-family: 'Cormorant Garamond', Georgia, serif;
-  color: var(--ink);
+  color: #2a3650;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  position: relative;
-  overflow-x: hidden;
 }
 
-/* ── decorative blobs ── */
-body::before, body::after {
-  content: '';
-  position: fixed;
-  border-radius: 50%;
-  opacity: .35;
-  pointer-events: none;
-}
-body::before {
-  width: 420px; height: 420px;
-  background: radial-gradient(circle, #d0d8ee 0%, transparent 70%);
-  top: -100px; left: -120px;
-}
-body::after {
-  width: 340px; height: 340px;
-  background: radial-gradient(circle, #c8d2e8 0%, transparent 70%);
-  bottom: -80px; right: -100px;
-}
-
-/* ── card ── */
+/* ── card wrapper ── */
 .card {
   display: grid;
   grid-template-columns: 1fr 340px;
   border-radius: 28px;
   max-width: 960px;
   width: 100%;
-  box-shadow: 0 24px 80px var(--shadow), 0 0 0 2.5px rgba(255,255,255,.65);
-  outline: 2px solid rgba(74,94,138,.5);
   overflow: hidden;
-  animation: fadeUp .9s ease both;
+  border: 2px solid #7a90b8;
+  box-shadow: 0 20px 60px rgba(20, 35, 70, 0.35);
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(32px); }
+  from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── left panel ── */
+/* ── LEFT panel — light ── */
 .left {
+  background-color: #e8ecf5;
   padding: 3.5rem 3rem 3.5rem 3.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
-  background: var(--card-left);
-  border-right: 1px solid rgba(255,255,255,.25);
+  border-right: 2px solid #7a90b8;
+  animation: fadeUp .9s ease both;
 }
 
 .brand {
   font-size: clamp(2.6rem, 5vw, 3.6rem);
   font-weight: 600;
-  color: var(--white);
+  color: #2a3a60;
   letter-spacing: -.02em;
   line-height: 1.1;
-  animation: fadeUp .9s .1s ease both;
 }
 
 .ayat {
   font-family: 'Amiri', serif;
-  font-size: 1.55rem;
+  font-size: 1.5rem;
   direction: rtl;
-  color: #d4dff5;
+  color: #3a4a6b;
   line-height: 2;
-  letter-spacing: .02em;
-  animation: fadeUp .9s .2s ease both;
 }
 
 .lead {
   font-size: 1.05rem;
   font-weight: 300;
   line-height: 1.75;
-  color: #dce5f5;
-  animation: fadeUp .9s .3s ease both;
+  color: #2a3650;
 }
 
-.lead + .lead { animation-delay: .4s; }
-.lead + .lead + .lead { animation-delay: .5s; }
+.lead.intro {
+  font-style: italic;
+  color: #4a5e8a;
+}
 
-/* ── right panel ── */
+/* ── RIGHT panel — darker slate ── */
 .right {
-  background: var(--card-right);
+  background-color: #8898bf;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1.6rem;
   padding: 3rem 2.4rem;
-  animation: fadeUp .9s .3s ease both;
+  animation: fadeUp .9s .2s ease both;
 }
 
+/* logo circle */
 .logo-wrap {
-  width: 110px; height: 110px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  background: var(--white);
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 28px var(--shadow);
+  box-shadow: 0 8px 28px rgba(20,35,70,.3);
   overflow: hidden;
 }
 
-.logo-wrap svg {
-  width: 72px; height: 72px;
+.logo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
-/* calligraphy SVG placeholder */
-.logo-inner {
-  font-family: 'Amiri', serif;
-  font-size: 2.6rem;
-  color: var(--deep);
-  line-height: 1;
-  direction: rtl;
-  user-select: none;
+.logo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .72rem;
+  color: #7a90b8;
+  text-align: center;
 }
 
 .contact-title {
-  font-family: 'Cormorant Garamond', serif;
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--white);
+  color: #ffffff;
   letter-spacing: .04em;
 }
 
@@ -172,8 +141,8 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--btn);
-  color: var(--white);
+  background-color: #6878a8;
+  color: #ffffff;
   border: none;
   border-radius: 50px;
   padding: .85rem 1rem .85rem 1.4rem;
@@ -183,18 +152,19 @@ body::after {
   letter-spacing: .05em;
   cursor: pointer;
   text-decoration: none;
-  transition: background .25s, transform .2s, box-shadow .25s;
-  box-shadow: 0 4px 14px rgba(58,74,107,.2);
+  transition: background-color .25s, transform .2s, box-shadow .25s;
+  box-shadow: 0 4px 14px rgba(20,35,70,.25);
 }
 
 .btn:hover {
-  background: var(--btn-hover);
+  background-color: #556090;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(58,74,107,.28);
+  box-shadow: 0 8px 24px rgba(20,35,70,.35);
 }
 
 .btn-icon {
-  width: 36px; height: 36px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -203,23 +173,32 @@ body::after {
 }
 
 .btn-icon svg {
-  width: 20px; height: 20px;
+  width: 20px;
+  height: 20px;
   fill: none;
-  stroke: #fff;
+  stroke: #ffffff;
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .btn-icon.ig   { background: radial-gradient(circle at 30% 110%, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-.btn-icon.wa   { background: #25d366; }
-.btn-icon.mail { background: #4285f4; }
+.btn-icon.wa   { background-color: #25d366; }
+.btn-icon.mail { background-color: #4285f4; }
 
 /* ── responsive ── */
 @media (max-width: 700px) {
-  .card { grid-template-columns: 1fr; }
-  .left { border-right: none; border-bottom: 1px solid rgba(255,255,255,.2); padding: 2.5rem 1.8rem; }
-  .right { padding: 2.5rem 1.8rem; }
+  .card {
+    grid-template-columns: 1fr;
+  }
+  .left {
+    border-right: none;
+    border-bottom: 2px solid #7a90b8;
+    padding: 2.5rem 1.8rem;
+  }
+  .right {
+    padding: 2.5rem 1.8rem;
+  }
 }
 ```
 
@@ -229,18 +208,16 @@ body::after {
 
 <main class="card">
 
-  <!-- ── LEFT ── -->
+  <!-- LEFT -->
 
   <section class="left">
     <h1 class="brand">Al Khattaat</h1>
 
-```
-<p class="lead" style="color:#c8d8f5;font-style:italic;animation-delay:.15s">
-  Allah SAW states in the Qur'an e Majeed…
-</p>
+
+<p class="lead intro">Allah SAW states in the Qur'an e Majeed…</p>
 
 <p class="ayat">
-  "* اَلَّذِى عَلَّمَ بِالْقَلَمِ * عَلَّمَ الْإِنسَـٰنَ مَا لَمْ يَعْلَمْ"
+  &#x201C;* اَلَّذِى عَلَّمَ بِالْقَلَمِ * عَلَّمَ الْإِنسَـٰنَ مَا لَمْ يَعْلَمْ&#x201D;
 </p>
 
 <p class="lead">
@@ -254,25 +231,30 @@ body::after {
 <p class="lead">
   Even if you have a picture that has captured one of your memorable moments… contact me so that I can elevate it by writing a phrase or a sentence of your choice in Arabic, over the picture so that you can frame it in your room or some place where you are reminded of your exceptional instance.
 </p>
-```
+
 
   </section>
 
-  <!-- ── RIGHT ── -->
+  <!-- RIGHT -->
 
   <aside class="right">
 
-```
-<!-- Logo circle with Arabic خط -->
+
+<!--
+  TO ADD YOUR LOGO: replace src="" with your image path.
+  e.g.  src="logo.png"  or  src="https://yoursite.com/logo.jpg"
+-->
 <div class="logo-wrap">
-  <span class="logo-inner" title="Al Khattaat">خط</span>
+  <img src="https://github.com/alkhattaat/alkhattaat.github.io/blob/main/PHOTO-2024-11-20-18-57-45.jpg?raw=true" alt="Al Khattaat Logo"
+    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    onload="this.nextElementSibling.style.display='none';">
 </div>
 
 <h2 class="contact-title">Contact Me</h2>
 
 <nav class="btn-group">
-  <!-- Instagram -->
-  <a href="https://instagram.com/" target="_blank" rel="noopener" class="btn">
+
+  <a href="https://www.instagram.com/alkhattaat?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="btn">
     Instagram
     <span class="btn-icon ig">
       <svg viewBox="0 0 24 24">
@@ -283,8 +265,7 @@ body::after {
     </span>
   </a>
 
-  <!-- WhatsApp -->
-  <a href="https://wa.me/" target="_blank" rel="noopener" class="btn">
+  <a href="https://wa.link/tjj7mj" target="_blank" rel="noopener" class="btn">
     WhatsApp
     <span class="btn-icon wa">
       <svg viewBox="0 0 24 24">
@@ -293,8 +274,7 @@ body::after {
     </span>
   </a>
 
-  <!-- Email -->
-  <a href="mailto:contact@alkhattaat.com" class="btn">
+  <a href="mailto:alkhattaat786@gmail.com" class="btn">
     Email
     <span class="btn-icon mail">
       <svg viewBox="0 0 24 24">
@@ -303,8 +283,9 @@ body::after {
       </svg>
     </span>
   </a>
+
 </nav>
-```
+
 
   </aside>
 </main>
